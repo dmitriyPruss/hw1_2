@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boxers</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
+    <style>
+        h1 {
+            color: red;
+            text-align: center
+        }
+        
+        p {
+            text-indent: 30px
+        }
+        
+        li {
+            position: relative;
+        }
+        
+        h1,
+        h3 {
+            font-family: 'New Tegomin', serif;
+        }
+        
+        li:hover {
+            background-color: aquamarine;
+            cursor: pointer
+        }
+        
+        #tooltip {
+            background-color: aliceblue;
+            color: darkblue;
+            text-align: center;
+            border: 2px double blue;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1><em><u>Top 3 heavyweight boxers</u></em></h1>
+    <hr>
+    <p>
+        Boxers who weigh <strong>over 200 pounds</strong> (91 kg; 14 st 4 lb) are considered heavyweights by 3 of the 4 major professional boxing organizations: <i> the International Boxing Federation</i> ,[1] <sub>the World</sub>
+        <sup>Boxing Association</sup>,[2] <del>and the World Boxing Organization</del>.[3] In 2020, the World Boxing Council [4] increased their heavyweight classification to 224 pounds to allow for their creation of the bridgerweight division.
+    </p>
+    <hr>
+    <!-- Изображения ниже являются ссылками, при клике на которые 
+    осуществляется переход на страницы, расположенные в папке pages -->
+    <ol>
+        <li>
+            <h3><i>Tyson Fury</i></h3>
+            <a href="./pages/fury.html">
+                <img src="./pics/fury.jpg" alt="Fury" width='200' title='Click me..'>
+            </a>
+        </li>
+        <li>
+            <h3><i>Anthony Joshua</i></h3>
+            <a href="./pages/joshua.html">
+                <img src="./pics/joshua.jpg" alt="Joshua" width='200' title='Click me..'>
+            </a>
+        </li>
+        <li>
+            <h3><i>Deontay Wilder</i></h3>
+            <a href="./pages/wilder.html">
+                <img src="./pics/wilder.jpg" alt="Wilder" width='200' title='Click me..'>
+            </a>
+        </li>
+    </ol>
+    <hr>
+    <p>
+        <big><big> Lorem.</big></big> <small>ipsum</small> <big>dolor sit</big> amet.
+    </p>
+    <script>
+        const lis = document.querySelectorAll('li');
+        lis.forEach(i => {
+            i.addEventListener("click", function(e) {
+                console.log('e.type - ', e.type);
+                setTimeout(() => {
+                    show.apply(this, ["tagname - ", this.tagName.toLowerCase()]);
+                }, 1000);
+                console.log("---------------------");
+            })
+        });
+
+        function show(elem1, elem2) {
+            console.log(this);
+            console.log(elem1, elem2);
+
+            if (document.getElementById("tooltip")) {
+                document.getElementById("tooltip").remove();
+            };
+
+            let coords = this.getBoundingClientRect();
+            let div = document.createElement("div");
+            div.id = 'tooltip';
+            div.style.position = 'absolute';
+            div.style.zIndex = 9999;
+            div.style.left = coords.left + 300 + 'px';
+            div.style.top = coords.top + pageYOffset + 10 + 'px';
+            console.log(pageYOffset, " ", div.style.left, ' ', div.style.top)
+            div.innerHTML = `<u>${this.tagName}</u><br>${elem1} ${elem2}`;
+            document.body.append(div);
+        }
+    </script>
+</body>
+
+</html>
